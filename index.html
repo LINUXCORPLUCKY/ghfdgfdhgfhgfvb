@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+            }
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+            transform-style: preserve-3d;
+            animation: titleFloat 4s ease-in-out infinite;
+            z-index: 10;
+            position: relative;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% {
+                transform: rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+            50% {
+                transform: rotateX(5deg) rotateY(5deg) translateZ(20px);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 2s ease-out;
+            z-index: 10;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-container {
+            perspective: 1000px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90vw;
+            text-align: center;
+            transform-style: preserve-3d;
+            animation: cardHover 6s ease-in-out infinite;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes cardHover {
+            0%, 100% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            33% {
+                transform: rotateY(3deg) rotateX(2deg);
+            }
+            66% {
+                transform: rotateY(-3deg) rotateX(-2deg);
+            }
+        }
+
+        .dad-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: iconSpin 8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes iconSpin {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .message {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-2px) rotateX(5deg);
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            animation: sparkle 3s ease-in-out infinite;
+            font-size: 16px;
+        }
+
+        .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 30%; right: 20%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: 25%; left: 25%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { bottom: 35%; right: 15%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 50%; left: 5%; animation-delay: 2s; }
+        .sparkle:nth-child(6) { top: 60%; right: 10%; animation-delay: 2.5s; }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .dad-icon {
+                font-size: 60px;
+            }
+            
+            .heart {
+                font-size: 16px;
+            }
+            
+            .sparkle {
+                font-size: 14px;
+            }
+            
+            /* Reduce animation intensity on mobile */
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+        }
+
+        /* Performance optimization for low-end devices */
+        @media (max-width: 480px) {
+            .floating-hearts {
+                display: none;
+            }
+            
+            .sparkles {
+                display: none;
+            }
+            
+            .card {
+                backdrop-filter: none;
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-hearts">
+            <div class="heart">❤️</div>
+            <div class="heart">💙</div>
+            <div class="heart">❤️</div>
+            <div class="heart">💛</div>
+            <div class="heart">❤️</div>
+            <div class="heart">💜</div>
+            <div class="heart">❤️</div>
+            <div class="heart">💚</div>
+        </div>
+
+        <div class="sparkles">
+            <div class="sparkle">✨</div>
+            <div class="sparkle">⭐</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">⭐</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">⭐</div>
+        </div>
+
+        <h1 class="main-title">Happy Father's Day</h1>
+        <p class="subtitle">To the World's Greatest Dad!</p>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="dad-icon">👨‍👧‍👦</div>
+                <div class="message">
+                    Thank you for being our hero, our guide, and our biggest supporter. 
+                    Your love, wisdom, and strength inspire us every day. 
+                    Today we celebrate you and all the wonderful memories we've shared together!
+                </div>
+                <button class="btn" onclick="showMessage()">Click for a Special Message</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showMessage() {
+            const messages = [
+                "You're not just a father, you're a superhero! 🦸‍♂️",
+                "Thanks for all the dad jokes and endless love! 😄",
+                "You make every day brighter with your smile! ☀️",
+                "Best dad in the universe! 🌟",
+                "Your hugs can fix anything! 🤗"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Create a temporary message element
+            const messageEl = document.createElement('div');
+            messageEl.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, 0.95);
+                color: #333;
+                padding: 30px;
+                border-radius: 15px;
+                font-size: 1.2rem;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1000;
+                animation: popIn 0.5s ease-out;
+                max-width: 80vw;
+            `;
+            
+            messageEl.innerHTML = randomMessage + '<br><br><small>Click anywhere to close</small>';
+            
+            // Add animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes popIn {
+                    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(messageEl);
+            
+            // Remove message when clicked
+            messageEl.addEventListener('click', () => {
+                messageEl.style.animation = 'popIn 0.3s ease-in reverse';
+                setTimeout(() => messageEl.remove(), 300);
+            });
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                if (messageEl.parentNode) {
+                    messageEl.style.animation = 'popIn 0.3s ease-in reverse';
+                    setTimeout(() => messageEl.remove(), 300);
+                }
+            }, 4000);
+        }
+
+        // Optimize animations for mobile
+        if (window.innerWidth <= 768) {
+            // Reduce animation frequency on mobile
+            const style = document.createElement('style');
+            style.textContent = `
+                .heart { animation-duration: 8s; }
+                .sparkle { animation-duration: 4s; }
+                .titleFloat { animation-duration: 6s; }
+                .cardHover { animation-duration: 8s; }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Pause animations when page is not visible to save battery
+        document.addEventListener('visibilitychange', function() {
+            const animatedElements = document.querySelectorAll('.heart, .sparkle, .main-title, .card, .dad-icon');
+            if (document.hidden) {
+                animatedElements.forEach(el => el.style.animationPlayState = 'paused');
+            } else {
+                animatedElements.forEach(el => el.style.animationPlayState = 'running');
+            }
+        });
+    </script>
+</body>
+</html>
